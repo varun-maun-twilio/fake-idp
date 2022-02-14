@@ -1,0 +1,10 @@
+body{
+    margin:0px;padding:0px;height:100vh;display:flex;justify-content:center;align-items:center;background: #000;
+}
+.titleText{
+    color:#fff;text-align: center;
+}
+.animatedGif{
+    height:400px;
+    width:auto;
+}

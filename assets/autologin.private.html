@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flex Autologin</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <div >
+    <h1 class="titleText">Almost There!</h1>
+    
+    <img class="animatedGif"  src="200.webp" />
+    </div>
+
+  <div style="display:none;">
+
+<form id="autologinForm" action="<%= destination %>" method="post">
+  <input type="hidden" id="SAMLResponse" name="SAMLResponse" value="" />
+  <input type="hidden" name="RelayState" value="<%=relayState %>" />
+  <input type="submit" value="Submit">
+</form> 
+
+</div>
+
+<script>
+  const reqParams = {
+    "sourceId":"<%=sourceId%>",
+    "destination":"<%=destination%>",
+    "domain":"<%=domain%>"
+  }
+
+  async function doAutoLogin(){
+
+
+    const localJson = JSON.parse(localStorage.getItem("flex-userinfo"));
+   
+
+    const buildTokenPayload = {
+      "sourceId":reqParams.sourceId,
+      "destination":reqParams.destination,
+      "emailId":localJson.emailId,
+      "fullName":localJson.fullName,
+    }
+
+    const {tokenContent=null} = await fetch(`${reqParams.domain}/buildSamlResponse`,{
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(buildTokenPayload)
+  }).then(d=>d.json()).catch(e=>console.error(e));
+
+  document.getElementById("SAMLResponse").value=tokenContent;
+  document.getElementById("autologinForm").submit()
+
+  }
+
+  doAutoLogin();
+
+</script>
+
+</body>
+</html>
+

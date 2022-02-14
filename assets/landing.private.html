@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flex Autologin</title>
+        <link rel="stylesheet" href="index.css" />
+    </head>
+<body >
+
+<div >
+<h1 class="titleText">Hang on!</h1>
+
+<img class="animatedGif"  src="200.webp" />
+</div>
+
+<script>
+
+
+
+localStorage.setItem("flex-userinfo",JSON.stringify({emailId:"<%=emailId%>",fullName:"<%=fullName%>"}))
+window.location.replace('<%=redirectUrl%>');
+
+</script>
+
+</body>
+</html>
+

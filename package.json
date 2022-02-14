@@ -1,0 +1,29 @@
+{
+  "name": "fake-idp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "twilio-run",
+    "deploy": "twilio-run deploy"
+  },
+  "dependencies": {
+    "@twilio/runtime-handler": "1.2.1",
+    "@vmaun/patched-samlp": "^7.0.0",
+    "crypto": "^1.0.1",
+    "ejs": "^3.1.6",
+    "fast-xml-parser": "^4.0.2",
+    "moment": "^2.29.1",
+    "saml": "^2.0.1",
+    "twilio": "^3.56",
+    "xml-js": "^1.6.11",
+    "xmldsigjs": "^2.4.0",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "twilio-run": "^3.4.0"
+  },
+  "engines": {
+    "node": "12"
+  }
+}
