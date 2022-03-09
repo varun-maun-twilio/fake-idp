@@ -17,5 +17,5 @@ twilio serverless:deploy
 * FRIENDLY NAME: Choose any name
 * X.509 CERTIFICATE: Public Certificate Content
 * IDENTITY PROVIDER ISSUER : https://fake-idp-xxxx-dev.twil.io/entityId
-* SINGLE SIGN-ON URL : https://fake-idp-xxxx-dev.twil.io/entityId
+* SINGLE SIGN-ON URL : https://fake-idp-xxxx-dev.twil.io/sso
 
