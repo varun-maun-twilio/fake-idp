@@ -11,7 +11,7 @@ exports.handler = async function (context, event, callback) {
   response.appendHeader("Content-Type", "application/json");
 
 
-  const { sourceId, destination, emailId, fullName } = event;
+  const { sourceId, destination, emailId, fullName ,roles= 'supervisor,wfo.full_access,custom_agent_role'} = event;
   const { FLEX_SSO_ISSUER } = context;
 
   const certText = Runtime.getAssets()["/idp-public-cert.pem"].open();
@@ -36,8 +36,11 @@ exports.handler = async function (context, event, callback) {
     displayName: fullName,
     name: { givenName: '', familyName: '' },
     'full_name': fullName,
-    'roles': 'agent',
-    'email': emailId
+    'roles':roles ,
+    'email': emailId,
+    'custom_claim_1':'sampleText',
+    'custom_claim_2.stringarray':'arr1,arr2,arr3',
+    'routing.json':'{"skills":["test1"],"levels":{"test1":1}}'
   }
 
   samlp.getSamlResponse(options, userInfo, (err, samlpResponse) => {

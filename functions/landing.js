@@ -7,13 +7,13 @@ response.appendHeader('Access-Control-Allow-Methods', 'OPTIONS POST GET');
 response.appendHeader('Access-Control-Allow-Headers', 'Content-Type');
 response.appendHeader("Content-Type", "text/html");
 
-const {emailId='dummy@twilio.com',fullName='dummy user'} = event;
+const {emailId='dummy@twilio.com',fullName='dummy user',roles='supervisor,wfo.full_access,custom_agent_role'} = event;
 //TODO: Validate the request params
 const {FLEX_SSO_URL} = context;
 
 const landingTemplate = Runtime.getAssets()["/landing.html"].open();
 
-let htmlContent = ejs.render(landingTemplate, {redirectUrl:FLEX_SSO_URL,emailId,fullName});
+let htmlContent = ejs.render(landingTemplate, {redirectUrl:FLEX_SSO_URL,emailId,fullName,roles});
 
 response.setBody(htmlContent);
 return callback(null, response);
